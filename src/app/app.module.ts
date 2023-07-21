@@ -11,6 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { FollowUsComponent } from './layout/footer/follow-us/follow-us.component';
 import { OurPagesComponent } from './layout/footer/our-pages/our-pages.component';
 import { PartnersComponent } from './layout/footer/partners/partners.component';
+import { IntroComponent } from './home/intro/intro.component';
+import { TestimonialsComponent } from './home/testimonials/testimonials.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { PartnersComponent } from './layout/footer/partners/partners.component';
     NavigationComponent,
     FollowUsComponent,
     OurPagesComponent,
-    PartnersComponent
+    PartnersComponent,
+    IntroComponent,
+    TestimonialsComponent
   ],
   imports: [
     BrowserModule,
