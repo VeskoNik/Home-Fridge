@@ -1,0 +1,31 @@
+<div id="header_right">
+    <div id="templatemo_menu">
+      <ul>
+        <li>
+          <a routerLink="/" [routerLinkActive]="'current'">
+            Home
+          </a>
+        </li>
+        <ng-container *ngIf="hasToken; else loggedOutNav">
+          <li class="last">
+            <a routerLink="/create">Add to Fridge</a>
+          </li>
+          <li>
+            <a routerLink="/dashboard">Fridge</a>
+          </li>
+          <li>
+            <a href="" (click)="logout()">Logout</a>
+          </li>
+        </ng-container>
+        <ng-template #loggedOutNav>
+          <li>
+            <a routerLink="/login">Login</a>
+          </li>
+          <li>
+            <a routerLink="/register">Register</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+  
