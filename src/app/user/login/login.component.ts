@@ -39,18 +39,16 @@ export class LoginComponent {
       password: this.loginForm.value.password
     };
 
-    // Implement the login logic using Angular's HttpClient
-    // You can use HttpClient to send POST request to your backend
-    // For example:
      this.http.post('http://localhost:5000/users/login', data).subscribe(
        (response: any) => {
-         // Handle successful login
+         
          this.cookieService.set('token', response.token);
          window.location.href = '/';
        },
        (error: any) => {
-         // Handle login error
+       
          this.error = error.error;
+         
        }
      );
   }

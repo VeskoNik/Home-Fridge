@@ -15,7 +15,7 @@
                 </div>
 
                 <button type="submit" [disabled]="loginForm.invalid">Login</button>
-                <p class="error" *ngIf="error">{{ error }}</p>
+                <p class="error" *ngIf="error">Invalid email or Password</p>
                 <p class="message">
                     Not registered? <a href="/register">Create an account</a>
                 </p>
