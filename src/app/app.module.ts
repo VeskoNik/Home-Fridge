@@ -17,6 +17,7 @@ import { LoginComponent } from './user/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './user/register/register.component';
 import { CreateComponent } from './item/create/create.component';
+import { DashboardComponent } from './item/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CreateComponent } from './item/create/create.component';
     TestimonialsComponent,
     LoginComponent,
     RegisterComponent,
-    CreateComponent
+    CreateComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
