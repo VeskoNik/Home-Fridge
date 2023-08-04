@@ -12,6 +12,8 @@ import { OurPagesComponent } from './layout/footer/our-pages/our-pages.component
 import { PartnersComponent } from './layout/footer/partners/partners.component';
 import { IntroComponent } from './home/intro/intro.component';
 import { TestimonialsComponent } from './home/testimonials/testimonials.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { TestimonialsComponent } from './home/testimonials/testimonials.componen
     OurPagesComponent,
     PartnersComponent,
     IntroComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
