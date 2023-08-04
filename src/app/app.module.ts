@@ -12,8 +12,9 @@ import { OurPagesComponent } from './layout/footer/our-pages/our-pages.component
 import { PartnersComponent } from './layout/footer/partners/partners.component';
 import { IntroComponent } from './home/intro/intro.component';
 import { TestimonialsComponent } from './home/testimonials/testimonials.component';
-import { UserComponent } from './user/user.component';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './user/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import { LoginComponent } from './user/login/login.component';
     PartnersComponent,
     IntroComponent,
     TestimonialsComponent,
-    UserComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     CookieService 
