@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private cookieService: CookieService
   ) {
    
     this.loginForm = this.formBuilder.group({
@@ -45,7 +45,7 @@ export class LoginComponent {
      this.http.post('http://localhost:5000/users/login', data).subscribe(
        (response: any) => {
          // Handle successful login
-         console.log(response.token);
+         this.cookieService.set('token', response.token);
          window.location.href = '/';
        },
        (error: any) => {

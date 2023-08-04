@@ -1,1 +1,18 @@
-<p>register works!</p>
+<main class="register">
+    <section id="register">
+      <div class="form">
+        <h2>Register</h2>
+        <form class="login-form" [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+          <input type="text" name="email" id="register-email" placeholder="email" formControlName="email" />
+          <input type="password" name="password" id="register-password" placeholder="password" formControlName="password" />
+          <input type="password" name="passwordRepeat" id="repeat-password" placeholder="repeat password" formControlName="passwordRepeat" />
+          <button type="submit">Register</button>
+          <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+          <p class="message">
+            Already registered? <a href="/login">Login</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+  
