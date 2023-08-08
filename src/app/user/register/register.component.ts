@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/user.service';
+import { User } from 'src/app/user.model';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient , private cookieService: CookieService) {
+  constructor(private formBuilder: FormBuilder , private cookieService: CookieService, private userService: UserService) {}
+
+  ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      passwordRepeat: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$/)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      passwordRepeat: ['', Validators.required],
     });
   }
 
@@ -24,27 +27,20 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
-
-    const email = this.registerForm.value.email;
-    const password = this.registerForm.value.password;
-    const passwordRepeat = this.registerForm.value.passwordRepeat;
-
-    if (password !== passwordRepeat) {
-      this.errorMessage = 'Passwords do not match';
-      return;
-    }
-
-    const data = { email, password, passwordRepeat};
+    const user: User = this.registerForm.value;
     
-
-    this.http.post('http://localhost:5000/users/register', data).subscribe({
+    this.userService.register(user).subscribe({
       next: (response: any) => {
         this.cookieService.set('token', response.token);
         
         window.location.href = '/';
       },
       error: (error: any) => {
-        this.errorMessage = error.error.errorMessage;
+        if (error.error && error.error.error) {
+          this.errorMessage = error.error.error;
+        } else {
+          this.errorMessage = 'An error occurred';
+        }
         console.error('Error:', error);
       }
     });
