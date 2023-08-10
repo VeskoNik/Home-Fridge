@@ -115,7 +115,7 @@ em { color: #fff; }
 	height: 99px;
 	padding: 0 10px;
 	margin: 0 auto;
-	background-color: #68473b ;
+	background: #68473b  url(/assets/images/templatemo_header.png) repeat-x top ;
 }
 
 
@@ -410,7 +410,7 @@ em { color: #fff; }
 
 #templatemo_footer_wrapper {
 	width: 100%;
-	background: #68473b url(/assets/images/templatemo_footer.jpg) repeat-x top;
+	background: #68473b url(/assets/images/templatemo_footer.png) repeat-x top;
 }
 
 #templatemo_footer {

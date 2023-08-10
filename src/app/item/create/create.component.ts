@@ -14,12 +14,12 @@ export class CreateComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.addItemForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       date: ['', Validators.required],
-      type: ['', Validators.required],
-      imageUrl: ['', Validators.required],
-      calories: ['', Validators.required],
-      description: ['', Validators.required],
+      type: ['', [Validators.required, Validators.minLength(3)]],
+      imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\//)]],
+      calories: ['', [Validators.required, Validators.min(1)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
     });
   }
 
@@ -27,12 +27,12 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.addItemForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       date: ['', Validators.required],
-      type: ['', Validators.required],
-      imageUrl: ['', Validators.required],
-      calories: ['', Validators.required],
-      description: ['', Validators.required],
+      type: ['', [Validators.required, Validators.minLength(3)]],
+      imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\//)]],
+      calories: ['', [Validators.required, Validators.min(1)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
     });
   }
 
