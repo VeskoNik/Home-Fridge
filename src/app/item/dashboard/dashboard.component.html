@@ -17,7 +17,8 @@
               <strong>Description: </strong>
               <span class="description">{{ item.description }}</span>
             </p>
-            <a class="details-btn" [href]="'/dashboard/' + item._id + '/details'">Details</a>
+           <a class="details-btn" [routerLink]="[item._id, 'details']">Details</a>
+
           </li>
         </ul>
       </div>

@@ -1,0 +1,47 @@
+<main class="details">
+    <!-- Details page -->
+    <section id="details">
+        <div id="details-wrapper">
+            <p id="details-name">Name: {{ item.name }}</p>
+            <div id="img-wrapper">
+                <img [src]="item.imageUrl" />
+            </div>
+            <div id="info-wrapper">
+                <table>
+                    <tr>
+                        <td>
+                            <p>
+                                Years: <span id="details-date">{{ item.date }}</span>
+                            </p>
+                        </td>
+                        <td>
+                            <p>Kind: <span id="details-type">{{ item.type }}</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Need of: <span id="details-calories">{{ item.calories }}</span></p>
+                        </td>
+                    </tr>
+                </table>
+                <p>Description: <span id="details-description">{{ item.description }}</span></p>
+            </div>
+
+            <!-- Edit and Delete are only for creator -->
+            <div id="action-buttons">
+                <ng-container *ngIf="authenticated; else notAuthenticated">
+                    <ng-container *ngIf="isOwner; else notOwner">
+                        <a [routerLink]="['/items', item._id, 'edit']" id="edit-btn">Edit</a>
+                        <a [routerLink]="['/items', item._id, 'delete']" id="delete-btn">Delete</a>
+                    </ng-container>
+                    <ng-template #notOwner>
+                        <p>You do not have permission to edit or delete this item.</p>
+                    </ng-template>
+                </ng-container>
+                <ng-template #notAuthenticated>
+                    <p>You must be logged in to edit or delete this item.</p>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+</main>
