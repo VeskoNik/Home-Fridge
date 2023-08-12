@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,6 +13,7 @@ import { User } from 'src/app/models/user.model';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   errorMessage: string = '';
+  
 
   constructor(private formBuilder: FormBuilder , private cookieService: CookieService, private userService: UserService) {}
 
@@ -32,6 +34,7 @@ export class RegisterComponent implements OnInit {
     this.userService.register(user).subscribe({
       next: (response: any) => {
         this.cookieService.set('token', response.token);
+  
         
         window.location.href = '/';
       },

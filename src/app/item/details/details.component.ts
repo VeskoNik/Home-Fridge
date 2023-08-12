@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailsService } from '../../services/details.service';
 import { CookieService } from 'ngx-cookie-service';
+import jwtDecode from 'jwt-decode';
 
 debugger
 @Component({
@@ -24,10 +25,10 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('iiiiiii');
+
     
-    const itemId: string | null = this.route.snapshot.paramMap.get('id'); // Explicitly specify the type
-    console.log(itemId);
+    const itemId: string | null = this.route.snapshot.paramMap.get('id'); 
+   
     
     this.authenticated = this.cookieService.check('token');
 
@@ -35,11 +36,15 @@ export class DetailsComponent implements OnInit {
       this.detailService.getItemDetails(itemId).subscribe(
         (response: any) => {
           this.item = response.item;
-          this.isOwner = response.isOwner; // Assign isOwner value directly from the response
+          const owner: any = this.item.owner
+         const currentUserId: any = jwtDecode(this.cookieService.get('token'))
+          
+          
+          this.isOwner = owner === currentUserId._id
+          
         },
         (error: any) => {
           console.error('Error:', error);
-          // Redirect to an error page or handle the error as needed
           this.router.navigate(['/error']);
         }
       );
