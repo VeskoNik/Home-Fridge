@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailsService } from '../../services/details.service';
+
 import { CookieService } from 'ngx-cookie-service';
 import jwtDecode from 'jwt-decode';
+import { ItemService } from 'src/app/services/item.service';
 
 debugger
 @Component({
@@ -20,10 +21,9 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private detailService: DetailsService,
+    private itemService: ItemService,
     private cookieService: CookieService,
   ) { }
-
   ngOnInit(): void {
 
     
@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit {
     this.authenticated = this.cookieService.check('token');
 
     if (itemId) {
-      this.detailService.getItemDetails(itemId).subscribe(
+      this.itemService.getItemDetails(itemId).subscribe(
         (response: any) => {
           this.item = response.item;
           const owner: any = this.item.owner

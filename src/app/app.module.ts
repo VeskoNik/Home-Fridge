@@ -20,7 +20,7 @@ import { CreateComponent } from './item/create/create.component';
 import { DashboardComponent } from './item/dashboard/dashboard.component';
 import { DetailsComponent } from './item/details/details.component';
 import { EditComponent } from './item/edit/edit.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +44,8 @@ import { EditComponent } from './item/edit/edit.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     CookieService 

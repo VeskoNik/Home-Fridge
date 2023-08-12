@@ -1,1 +1,36 @@
-<p>edit works!</p>
+<main class="edit">
+    <section id="create">
+      <div class="form">
+        <h2>Edit item</h2>
+        <form class="create-form" [formGroup]="editItemForm" (ngSubmit)="handleSubmit()">
+          <input type="text" name="name" id="name" placeholder="Name" formControlName="name" />
+          <div *ngIf="editItemForm.get('name')?.hasError('required')">Name is required.</div>
+          <div *ngIf="editItemForm.get('name')?.hasError('minlength')">Name must be at least 2 characters.</div>
+  
+          <input type="text" name="date" id="date" placeholder="Date" formControlName="date" />
+          <div *ngIf="editItemForm.get('date')?.hasError('required')">Date is required.</div>
+          <div *ngIf="editItemForm.get('date')?.hasError('pattern')">Invalid date format.</div>
+  
+          <input type="text" name="type" id="type" placeholder="Kind" formControlName="type" />
+          <div *ngIf="editItemForm.get('type')?.hasError('required')">Type is required.</div>
+          <div *ngIf="editItemForm.get('type')?.hasError('minlength')">Type must be at least 3 characters.</div>
+  
+          <input type="text" name="imageUrl" id="item-img" placeholder="Image url" formControlName="imageUrl" />
+          <div *ngIf="editItemForm.get('imageUrl')?.hasError('required')">Image url is required.</div>
+          <div *ngIf="editItemForm.get('imageUrl')?.hasError('pattern')">Invalid url format.</div>
+  
+          <input type="number" name="calories" id="calories" placeholder="Needs of" formControlName="calories" />
+          <div *ngIf="editItemForm.get('calories')?.hasError('required')">Calories is required.</div>
+          <div *ngIf="editItemForm.get('calories')?.hasError('min')">Calories must be a positive number.</div>
+  
+          <textarea id="description" placeholder="Description..." name="description" formControlName="description"></textarea>
+          <div *ngIf="editItemForm.get('description')?.hasError('required')">Description is required.</div>
+          <div *ngIf="editItemForm.get('description')?.hasError('minlength')">Description must be at least 5 characters.</div>
+          <div *ngIf="editItemForm.get('description')?.hasError('maxlength')">Description must be no more than 50 characters.</div>
+  
+          <button type="submit">Edit</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  

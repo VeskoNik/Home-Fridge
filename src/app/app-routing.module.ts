@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './item/create/create.component';
 import { DashboardComponent } from './item/dashboard/dashboard.component';
 import { DetailsComponent } from './item/details/details.component';
+import { EditComponent } from './item/edit/edit.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 
@@ -14,10 +15,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create', component: CreateComponent },
   { path: 'dashboard', component: DashboardComponent },
-  {
-    path: 'dashboard/:id/details',
-    component: DetailsComponent,
-  },
+  { path: 'dashboard/:id/details',component: DetailsComponent},
+  { path: 'dashboard/:id/edit', component: EditComponent}
 ];
 
 @NgModule({

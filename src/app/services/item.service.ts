@@ -14,4 +14,15 @@ export class ItemService {
   register(item: Item): Observable<any> {
     return this.http.post(`${this.apiUrl}/create`, item);
   }
+
+  getItemDetails(itemId: string): Observable<any> {
+    const url = `${this.apiUrl}/${itemId}/details`; 
+    return this.http.get(url);
+  }
+
+  postItemDetails(item: Item, itemId: string): Observable<any> {
+    const url = `${this.apiUrl}/${itemId}/edit` ;
+    return this.http.post(url,item);
+  }
 }
+
