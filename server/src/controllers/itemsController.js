@@ -1,8 +1,7 @@
 const { auth, isAuth } = require('../middlewares/authMdwr');
 const itemsManager = require('../managers/itemsManager');
 const router = require('express').Router();
-// const userManager = require('../managers/userManager');
-// const { getErrorMessage } = require('../utils/errorHelpers');
+
 
 router.get('/dashboard', auth, async (req, res) => {
     try {
@@ -14,55 +13,34 @@ router.get('/dashboard', auth, async (req, res) => {
     }
   });
 
-// router.get('/:animalId/details', async (req, res) => {
-//     const animal = await itemsManager.getOne(req.params.animalId).lean();
-//     const owner = await userManager.findUser(animal.owner);
-//     const ownerEmail = owner.email
-//     const isOwner = animal.owner.toString() === req.user?._id
-//     const isDonated = animal.donations?.some(id => id == req.user?._id);
+  
+  router.get('/:itemId/details', async (req, res) => {
+    const itemId = req.params.itemId;
+    const item = await itemsManager.getOne(itemId).lean();
+    const isOwner = item.owner.toString() === req.user?._id;
+    
+    
+    res.json({ item, isOwner });
+  });
 
-//     res.render('animals/details', { animal, isOwner, ownerEmail ,isDonated});
-// });
+router.post('/:itemId/edit' ,async (req, res) => {
+    const itemData = req.body;
+    console.log(itemData)
+    try {
+       const item = await itemsManager.edit(req.params.itemId, itemData);
+        
+        res.send({item})
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
 
-// router.get('/search', async (req, res) => {
-//     const { location } = req.query;
-//     const animal = await itemsManager.search(location);
-//     res.render('animals/search', { animal })
-// })
+});
 
-// router.get('/:animalId/donate', auth, async (req, res) => {
+router.get('/:itemId/delete',  async (req, res) => {
+   const deleted = await itemsManager.delete(req.params.itemId);
 
-//     await itemsManager.donate(req.user._id, req.params.animalId);
-
-//     res.redirect(`/animals/${req.params.animalId}/details`)
-// });
-
-// router.get('/:animalId/edit', isAuth, async (req, res) => {
-//     const animal = await itemsManager.getOne(req.params.animalId).lean();
-
-//     res.render('animals/edit', { animal });
-// });
-
-// router.post('/:animalId/edit', isAuth ,async (req, res) => {
-//     const animalData = req.body;
-
-//     try {
-//         await itemsManager.edit(req.params.animalId, animalData);
-
-//         res.redirect(`/animals/${req.params.animalId}/details`);
-//     } catch (err) {
-//         res.render('animals/edit', {
-//             error: getErrorMessage(err),
-//             animal: animalData,
-//         })
-//     }
-
-// });
-
-// router.get('/:animalId/delete', isAuth, async (req, res) => {
-//     await itemsManager.delete(req.params.animalId);
-//     res.redirect('/items/dashboard')
-// });
+   res.send({deleted})
+});
 
 
 router.post('/create', auth,async (req, res) => {
@@ -73,8 +51,7 @@ router.post('/create', auth,async (req, res) => {
         res.send({item})
 
     } catch (err) {
-        // res.render( 'animals/create' , { error: getErrorMessage(err), 
-        //                             animal: itemsData });
+        
         res.status(400).json({ error: err.message });
     }
 });
