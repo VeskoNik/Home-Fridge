@@ -2,7 +2,7 @@
     <!-- Details page -->
     <section id="details">
         <div id="details-wrapper">
-            <p id="details-name">Name: {{ item?.name }}</p>
+            
             <div id="img-wrapper">
                 <img [src]="item?.imageUrl" />
             </div>
@@ -10,17 +10,25 @@
                 <table>
                     <tr>
                         <td>
-                            <p>
-                                Years: <span id="details-date">{{ item?.date }}</span>
-                            </p>
-                        </td>
-                        <td>
-                            <p>Kind: <span id="details-type">{{ item?.type }}</span></p>
+                            <p id="details-name">Name: {{ item?.name }}</p>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p>Need of: <span id="details-calories">{{ item?.calories }}</span></p>
+                            <p>
+                                Use Before: <span id="details-date">{{ item?.date | date:'yyyy-MM-dd' }}</span>
+                            </p>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>
+                                <p>Type: <span id="details-type">{{ item?.type }}</span></p>
+                            </td>
+                        </tr>
+                   
+                    <tr>
+                        <td>
+                            <p>Calories: <span id="details-calories">{{ item?.calories }}</span></p>
                         </td>
                     </tr>
                 </table>
@@ -39,7 +47,7 @@
                     </ng-template>
                 </ng-container>
                 <ng-template #notAuthenticated>
-                    <p>You must be logged in to edit or delete this item.</p>
+                    
                 </ng-template>
             </div>
         </div>

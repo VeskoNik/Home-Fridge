@@ -2,22 +2,24 @@
   <div id="templatemo_menu">
     <ul>
       <li>
-        <a routerLink="/" routerLinkActive="current">
+        <a routerLink="/" routerLinkActive="['current']" [routerLinkActiveOptions]="{ exact: true }">
           Home
         </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="current">Fridge</a>
       </li>
       <ng-container *ngIf="hasToken; else loggedOutNav">
         <li class="last">
           <a routerLink="/create" routerLinkActive="current">Add to Fridge</a>
         </li>
-        <li>
-          <a routerLink="/dashboard" routerLinkActive="current">Fridge</a>
-        </li>
+      
         <li>
           <a href="" (click)="logout()">Logout</a>
         </li>
       </ng-container>
       <ng-template #loggedOutNav>
+      
         <li>
           <a routerLink="/login" routerLinkActive="current">Login</a>
         </li>

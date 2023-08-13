@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import jwtDecode from 'jwt-decode';
 import { ItemService } from 'src/app/services/item.service';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 debugger
 @Component({
@@ -25,6 +26,7 @@ export class DetailsComponent implements OnInit {
     private itemService: ItemService,
     private cookieService: CookieService,
     private http: HttpClient,
+    private datePipe: DatePipe
   ) { }
   ngOnInit(): void {
 

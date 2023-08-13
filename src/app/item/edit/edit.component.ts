@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ItemService } from 'src/app/services/item.service';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
+  providers: [DatePipe]
 })
 export class EditComponent implements OnInit {
   editItemForm: FormGroup;
@@ -22,14 +25,16 @@ export class EditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private itemService: ItemService,
     private http: HttpClient,
+    private datePipe: DatePipe,
+
   ) {
     this.editItemForm = this.formBuilder.group({
-      name: [''],
-      date: [''],
-      type: [''],
-      imageUrl: [''],
-      calories: [''],
-      description: [''],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      date: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+      type: ['', [Validators.required, Validators.minLength(3)]],
+      imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\//)]],
+      calories: ['', [Validators.required, Validators.min(1)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
     });
     this.itemId = this.route.snapshot.paramMap.get('id') as string;
   }
@@ -38,9 +43,10 @@ export class EditComponent implements OnInit {
     this.itemService.getItemDetails(this.itemId).subscribe(
       (response: any) => {
         this.item = response.item;
+          const formattedDate = this.datePipe.transform(this.item.date, 'yyyy-MM-dd');
         this.editItemForm.patchValue({
           name: this.item.name,
-          date: this.item.date,
+          date: formattedDate,
           type: this.item.type,
           imageUrl: this.item.imageUrl,
           calories: this.item.calories,

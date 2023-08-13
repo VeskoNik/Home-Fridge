@@ -21,6 +21,9 @@ import { DashboardComponent } from './item/dashboard/dashboard.component';
 import { DetailsComponent } from './item/details/details.component';
 import { EditComponent } from './item/edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { ErrorPageComponent } from './error-page/error-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     CreateComponent,
     DashboardComponent,
     DetailsComponent,
-    EditComponent
+    EditComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   providers: [
-    CookieService 
+    CookieService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
