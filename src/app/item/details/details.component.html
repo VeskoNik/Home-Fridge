@@ -1,5 +1,5 @@
 <main class="details">
-    <!-- Details page -->
+   
     <section id="details">
         <div id="details-wrapper">
             
@@ -35,7 +35,6 @@
                 <p>Description: <span id="details-description">{{ item?.description }}</span></p>
             </div>
 
-            <!-- Edit and Delete are only for creator -->
             <div id="action-buttons">
                 <ng-container *ngIf="authenticated; else notAuthenticated">
                     <ng-container *ngIf="isOwner">
