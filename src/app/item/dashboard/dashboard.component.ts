@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Item } from 'src/app/models/item.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
      
     });
 
-    this.http.get<any[]>('http://localhost:5000/items/dashboard', { headers })
+    this.http.get<Item[]>('http://localhost:5000/items/dashboard', { headers })
       .subscribe(
         (data) => {
           console.log(data);
