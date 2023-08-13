@@ -1,0 +1,32 @@
+<main class="dashboard">
+    <section id="dashboard">
+      <h2>My Own Items</h2>
+      <div *ngIf="items.length > 0; else noItems">
+        <ul class="card-wrapper">
+          <li class="card" *ngFor="let item of items">
+            <img [src]="item.imageUrl" [alt]="item.name" />
+            <p>
+              <strong>Name: </strong>
+              <span class="name">{{ item.name }}</span>
+            </p>
+            <p>
+              <strong>Use before: </strong>
+              <span class="location">{{ item.date | date: 'shortDate' }}</span>
+            </p>
+            <p>
+              <strong>Description: </strong>
+              <span class="description">{{ item.description }}</span>
+            </p>
+           <a class="details-btn" [routerLink]="[item._id, 'details']">Details</a>
+
+          </li>
+        </ul>
+      </div>
+      <ng-template #noItems>
+        <div id="no-post">
+          <h2>There are no food items that you added in the fridge now!</h2>
+        </div>
+      </ng-template>
+    </section>
+  </main>
+  

@@ -10,6 +10,9 @@
         <a routerLink="/dashboard" routerLinkActive="current">Fridge</a>
       </li>
       <ng-container *ngIf="hasToken; else loggedOutNav">
+        <li>
+          <a routerLink="/owner-page" routerLinkActive="current">My Own items</a>
+        </li>
         <li class="last">
           <a routerLink="/create" routerLinkActive="current">Add to Fridge</a>
         </li>

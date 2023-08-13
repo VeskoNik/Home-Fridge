@@ -23,6 +23,7 @@ import { EditComponent } from './item/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { OwnerPageComponent } from './owner-page/owner-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     DashboardComponent,
     DetailsComponent,
     EditComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    OwnerPageComponent
   ],
   imports: [
     BrowserModule,

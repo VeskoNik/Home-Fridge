@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
   items: any[] = [];
-  token: string = ''; // Make sure to set the token value
+  token: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -19,12 +19,14 @@ export class DashboardComponent implements OnInit {
   fetchItems(): void {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `${this.token}`, // Replace with your actual access token or remove if not required
+     
     });
 
     this.http.get<any[]>('http://localhost:5000/items/dashboard', { headers })
       .subscribe(
         (data) => {
+          console.log(data);
+          
           this.items = data;
         },
         (error) => {
