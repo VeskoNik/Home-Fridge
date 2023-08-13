@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import jwtDecode from 'jwt-decode';
 import { ItemService } from 'src/app/services/item.service';
+import { HttpClient } from '@angular/common/http';
 
 debugger
 @Component({
@@ -17,23 +18,23 @@ export class DetailsComponent implements OnInit {
   isOwner: boolean = false;
   notOwner: boolean = false;
   notAuthenticated: boolean = false;
-
+  itemId: string | null = null;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private itemService: ItemService,
     private cookieService: CookieService,
+    private http: HttpClient,
   ) { }
   ngOnInit(): void {
 
     
-    const itemId: string | null = this.route.snapshot.paramMap.get('id'); 
+    this.itemId = this.route.snapshot.paramMap.get('id'); 
    
     
     this.authenticated = this.cookieService.check('token');
-
-    if (itemId) {
-      this.itemService.getItemDetails(itemId).subscribe(
+    if (this.itemId) {
+      this.itemService.getItemDetails(this.itemId).subscribe(
         (response: any) => {
           this.item = response.item;
           const owner: any = this.item.owner
@@ -49,5 +50,21 @@ export class DetailsComponent implements OnInit {
         }
       );
     }
+  }
+  handleDelete() {
+    const shouldDelete = window.confirm('Are you sure you want to delete this item?');
+
+    if(!shouldDelete) {
+      return;
+    }
+
+    this.http
+    .get(`http://localhost:5000/items/${this.itemId}/delete`)
+    .subscribe(
+      (respone: any) => {
+        console.log('Item deleted successfully');
+        window.location.href = '/dashboard'
+      }
+    )
   }
 }

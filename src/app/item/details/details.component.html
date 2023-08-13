@@ -32,7 +32,7 @@
                 <ng-container *ngIf="authenticated; else notAuthenticated">
                     <ng-container *ngIf="isOwner">
                         <a [routerLink]="['/dashboard', item._id, 'edit']" id="edit-btn">Edit</a>
-                        <a [routerLink]="['/items', item._id, 'delete']" id="delete-btn">Delete</a>
+                        <a href="javascript:void(0)" id="delete-btn" (click)="handleDelete()">Delete</a>
                     </ng-container>
                     <ng-template #notOwner>
                         <p>You do not have permission to edit or delete this item.</p>

@@ -59,7 +59,7 @@ export class EditComponent implements OnInit {
       return;
     }
     const itemsData = this.editItemForm.value;
-    console.log(itemsData);
+    console.log(this.itemId)
     this.http
       .post(`http://localhost:5000/items/${this.itemId}/edit`, itemsData, {
         headers: {
@@ -70,7 +70,7 @@ export class EditComponent implements OnInit {
       .subscribe(
         (response: any) => {
           console.log('Item added successfully');
-          window.location.href = `/dashboard/${this.itemId}/details`;
+          this.router.navigate(['dashboard', this.item._id, 'details']);
         },
         (error: any) => {
           this.errorMessage = error.error.errorMessage;
@@ -79,4 +79,6 @@ export class EditComponent implements OnInit {
       );
     
   }
+
+ 
 }

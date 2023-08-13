@@ -2,7 +2,7 @@
     <section id="create">
       <div class="form">
         <h2>Edit item</h2>
-        <form class="create-form" [formGroup]="editItemForm" (ngSubmit)="handleSubmit()">
+        <form class="create-form" (ngSubmit)="handleSubmit()" [formGroup]="editItemForm">
           <input type="text" name="name" id="name" placeholder="Name" formControlName="name" />
           <div *ngIf="editItemForm.get('name')?.hasError('required')">Name is required.</div>
           <div *ngIf="editItemForm.get('name')?.hasError('minlength')">Name must be at least 2 characters.</div>
