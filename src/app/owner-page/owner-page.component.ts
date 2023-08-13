@@ -28,7 +28,7 @@ export class OwnerPageComponent implements OnInit{
     this.http.get<Item[]>('http://localhost:5000/items/dashboard', { headers })
       .subscribe(
         (data) => {
-          let newData: [] = [];
+        
           const currentUserId: any = jwtDecode(this.cookieService.get('token'))
           this.items = data.filter(item => item.owner === currentUserId._id);
         },
