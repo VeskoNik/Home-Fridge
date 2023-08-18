@@ -3,7 +3,7 @@
     <section id="details">
         <div id="details-wrapper">
             
-            <div id="img-wrapper">
+            <div id="img-wrapper" [@pulsate]="isPulsating ? 'puslate' : 'initial'">
                 <img [src]="item?.imageUrl" />
             </div>
             <div id="info-wrapper">

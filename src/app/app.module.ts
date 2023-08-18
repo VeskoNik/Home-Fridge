@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ErrorPageComponent } from './features/error-page/error-page.component';
 import { OwnerPageComponent } from './features/owner-page/owner-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { OwnerPageComponent } from './features/owner-page/owner-page.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     CookieService,
