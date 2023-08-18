@@ -1,27 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CookieService } from 'ngx-cookie-service';
 import jwtDecode from 'jwt-decode';
 import { ItemService } from 'src/app/core/services/item.service';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { puslating } from 'src/app/shared/animations/puslating';
 
 debugger
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
-  animations: [
-    trigger('pulsate', [
-      state('initial', style({ transform: 'scale(0.6)' })),
-      state('puslate', style({ transform: 'scale(1)' })),
-      transition('initial <=> puslate', [animate('0.5s ease-in-out')]),
-    ])
-  ],
+  animations: [puslating],
 })
 export class DetailsComponent implements OnInit {
-  isPulsating: boolean = true;
+  isPulsating: boolean = false;
   item: any;
   authenticated: boolean = false;
   isOwner: boolean = false;
