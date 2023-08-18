@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Item } from 'src/app/models/item.model';
+import { Item } from 'src/app/core/models/item.model';
 
 @Component({
   selector: 'app-dashboard',

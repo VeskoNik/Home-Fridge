@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
 import jwtDecode from 'jwt-decode';
-import { ItemService } from 'src/app/services/item.service';
+import { ItemService } from 'src/app/core/services/item.service';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 

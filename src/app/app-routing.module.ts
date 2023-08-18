@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { HomeComponent } from './home/home.component';
-import { CreateComponent } from './item/create/create.component';
-import { DashboardComponent } from './item/dashboard/dashboard.component';
-import { DetailsComponent } from './item/details/details.component';
-import { EditComponent } from './item/edit/edit.component';
-import { OwnerPageComponent } from './owner-page/owner-page.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegisterComponent } from './user/register/register.component';
+import { ErrorPageComponent } from './features/error-page/error-page.component';
+import { HomeComponent } from './features/home/home.component';
+import { CreateComponent } from './features/item/create/create.component';
+import { DashboardComponent } from './features/item/dashboard/dashboard.component';
+import { DetailsComponent } from './features/item/details/details.component';
+import { EditComponent } from './features/item/edit/edit.component';
+import { OwnerPageComponent } from './features/owner-page/owner-page.component';
+import { LoginComponent } from './features/user/login/login.component';
+import { RegisterComponent } from './features/user/register/register.component';
 
 
 const routes: Routes = [

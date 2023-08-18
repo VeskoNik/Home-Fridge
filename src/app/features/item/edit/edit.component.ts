@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ItemService } from 'src/app/services/item.service';
+import { ItemService } from 'src/app/core/services/item.service';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 

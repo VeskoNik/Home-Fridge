@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import jwtDecode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
-import { Item } from '../models/item.model';
+import { Item } from '../../core/models/item.model';
 
 @Component({
   selector: 'app-owner-page',
